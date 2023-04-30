@@ -7,14 +7,20 @@ connection = mysql.connector.connect(user = 'root', password = 'Magic',
                                      database = 'phosmabank')
 
 cursor = connection.cursor()
-testQuery = ("SELECT * FROM userinfo")
-cursor.execute(testQuery)
+cursor.execute("SELECT id, username, password FROM userinfo")
+_existinguser = []
 
-for item in cursor:
+for i in cursor:
+    _existinguser.append(i)
 
-    print(item)
+print(_existinguser)
+print(_existinguser[1][0])
+#I LOOOVE MULTIDIMENSIONAL ARRAYS AHHH THEYRE SOOOO GOOD FOR ORGANIZATION <333
 
-print('Hello world!')
+cursor.execute("SELECT balance FROM userinfo")
+
+for i in cursor:
+    print(i)
 
 cursor.close()
 connection.close()
